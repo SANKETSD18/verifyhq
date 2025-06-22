@@ -14,7 +14,9 @@ const ApprovalDesk = () => {
     // Fetch events from the backend
     const fetchEvents = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/auth/events');
+            // const response = await fetch('http://localhost:5000/api/auth/events');
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/events`);
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -39,10 +41,12 @@ const ApprovalDesk = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Event submitted:', eventData);
+        // console.log('Event submitted:', eventData);
+        // console.log("✅ Backend URL:", import.meta.env.VITE_API_BASE_URL);
     
         try {
-            const response = await fetch('http://localhost:5000/api/auth/events', {
+            // const response = await fetch('http://localhost:5000/api/auth/events', {
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/events`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +59,7 @@ const ApprovalDesk = () => {
             }
     
             const data = await response.json();
-            console.log('Event added:', data);
+            // console.log('Event added:', data);
             alert('Event added successfully!');
 
             // Fetch updated events

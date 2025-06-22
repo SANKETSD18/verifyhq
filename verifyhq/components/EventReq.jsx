@@ -1,5 +1,4 @@
     import React, { useState, useEffect } from 'react';
-    import { Link } from 'react-router-dom';
     import { FaBars, FaBell, FaCog } from 'react-icons/fa';
     import bitlogo from '../src/assets/bitlogo.png';
     import Sidebar from './Sidebar';
@@ -18,7 +17,7 @@
             const storedUsername = localStorage.getItem('username');
             if (storedUsername) {
                 setUsername(storedUsername);
-                console.log(storedUsername);
+                // console.log(storedUsername);
             }
         }, []);
 
@@ -28,11 +27,9 @@
                 <nav className="flex items-center justify-between px-4 py-3 border-b border-gray-700 relative">
                     {/* Left: Logo */}
                     <div className="flex items-center gap-3">
-                        <Link to="/" className="flex items-center gap-3">
                             <img src={bitlogo} alt="Logo" className="h-8 w-8" />
                             <span className="text-lg font-bold">YourApp</span>
-                        </Link>
-                    </div>
+                      </div>
 
                     {/* Right Side: Icons */}
                     <div className="flex items-center gap-4">

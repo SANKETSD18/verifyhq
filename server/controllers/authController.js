@@ -18,6 +18,7 @@ export const loginUser  = async (req, res) => {
     
     // 2. Compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
+    // console.log("✅ Password match:", isMatch);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
     
     // 3. Generate token (if using JWT)
@@ -43,15 +44,15 @@ export const registerUser  = async (req, res) => {
     if (existingUser ) {
       return res.status(400).json({ message: 'Username already exists' });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10); // ✅ secure hash
-
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
     const newUser  = new User({ username, password: hashedPassword });
     await newUser .save();
 
     res.status(201).json({ message: 'User  created successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Error registering user', error: err });
+    console.error("❌ Registration error:", err); 
+    res.status(500).json({ message: 'Error registering user', error: err.message });
   }
 };
 

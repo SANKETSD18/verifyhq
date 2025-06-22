@@ -16,15 +16,9 @@ const eventSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-// Hash password before saving
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
 
 // Export both models
-const User = mongoose.model('User ', userSchema, 'admin_login');
+const User = mongoose.model('User', userSchema, 'admin_login');
 const Event = mongoose.model('Event', eventSchema);
 
 export { User, Event };

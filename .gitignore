@@ -1,5 +1,6 @@
 # Ignore backend .env file
 server/.env
+verifyhq/.env 
 
 # Node modules
 server/node_modules/
